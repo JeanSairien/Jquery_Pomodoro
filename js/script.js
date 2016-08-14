@@ -2,6 +2,7 @@ var temps = 1;
 var minuter_min = temps; 
 var minuter_sec;
 var set;
+var pause = 5;
 /*var nb_sec_in_min = 60;*/
 
 
@@ -41,6 +42,9 @@ function afficheTime(){
 		t = minuter_min + ":0" + minuter_sec;
 	$("p:first").text(t);
 }
+
+
+
 function DeroulTimer(){
 	afficheTime();
 	if(minuter_sec == 00 && minuter_min != 00){
@@ -50,23 +54,42 @@ function DeroulTimer(){
 	else{
 		minuter_sec = minuter_sec -1;
 	}
-}
+
+	if(minuter_sec == 00 && minuter_min == 00){
+		StopTimer();
+		Pause();
+};
+
+
+
+function Pause(){
+		var temps = pause;
+		DeroulTimer();
+	}
+
+
+		
+
 
 $("#stop").click(function() {
 	StopTimer();
 });
 	
-	function StopTimer(){
+function StopTimer(){
 		var temps = "00" + ":" + "00"; 
 		$("p:first").text(temps);
 		clearInterval(set);
 		$("#task").text(task);
-		$("#done").val("");
-				
-
-
+		$(".list-group-item:first").html("#task");
+		
 
 	};
+		
+
+}
+
+
+
 
 
 
